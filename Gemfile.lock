@@ -1,0 +1,24 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    CFPropertyList (2.2.8)
+    facter (2.4.4)
+      CFPropertyList (~> 2.2.6)
+    hiera (2.0.0)
+      json_pure
+    json_pure (1.8.2)
+    puppet (4.1.0)
+      facter (> 2.0, < 4)
+      hiera (>= 2.0, < 3)
+      json_pure
+    puppet-lint (1.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  puppet (~> 4.1)
+  puppet-lint
+
+BUNDLED WITH
+   1.10.4
