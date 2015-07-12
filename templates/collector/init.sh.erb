@@ -1,0 +1,79 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          pikka-bird-collector
+# Required-Start:    $network $named $remote_fs
+# Required-Stop:     $network $named $remote_fs
+# Should-Start:      pikka-bird-collector
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: pikka-bird collector
+# Description:       Pikka Bird ops monitoring tool Server component.
+### END INIT INFO
+
+PATH=<%= @path %>
+DAEMON='<%= @path_daemon %>'
+NAME='collector'
+DESC='pikka-bird collector'
+CHUID='<%= @user_name %>'
+DAEMON_LOG=">> <%= @path_log %>/$NAME.log 2>&1"
+PIDFILE='<%= @path_pid %>'
+
+test -x $DAEMON || exit 0
+
+[ -r <%= @path_config %> ] && . <%= @path_config %>
+
+DAEMON_OPTS="-X collect -e $PB_INTERVAL -s $PB_SERVER_URI -c $PB_CONF --format $PB_FORMAT --log-level $PB_LOG_LEVEL"
+
+. /lib/lsb/init-functions
+
+start_pikka_bird_collector() {
+  start-stop-daemon \
+    --start \
+    --pidfile $PIDFILE \
+    --make-pidfile \
+    --background \
+    --chuid $CHUID \
+    --startas '/bin/sh' \
+    --quiet \
+    -- -c "exec $DAEMON $DAEMON_OPTS $DAEMON_LOG"
+}
+
+stop_pikka_bird_collector() {
+  start-stop-daemon \
+    --stop \
+    --retry TERM/10/KILL/5 \
+    --pidfile $PIDFILE \
+    --oknodo \
+    --quiet
+}
+
+status_pikka_bird_collector() {
+  status_of_proc -p $PIDFILE $DAEMON $NAME
+}
+
+case "$1" in
+start)
+  log_begin_msg "Starting $DESC"
+  start_pikka_bird_collector
+  log_end_msg $?
+;;
+stop)
+  log_begin_msg "Stopping $DESC"
+  stop_pikka_bird_collector
+  log_end_msg $?
+;;
+status)
+  status_pikka_bird_collector
+;;
+restart|force-reload)
+  log_begin_msg "Restarting $DESC"
+  stop_pikka_bird_collector
+  start_pikka_bird_collector
+  log_end_msg $?
+;;
+*)
+  echo "Usage: $0 {start|stop|status|restart|force-reload}" >&2
+  exit 1
+;;
+esac
