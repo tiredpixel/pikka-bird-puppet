@@ -53,19 +53,11 @@ class pikka_bird::params {
   $server_path_mode_dir    = '0750'
   $server_path_mode_file   = '0640'
   $server_path_pid         = '/var/run/pikka-bird-server.pid'
-  $server_pip_ensure       = 'latest'
-  $server_pip_manage       = true
-  $server_pip_name         = 'pip'
   $server_port             = 8042
-  $server_python_dev       = true
-  $server_python_manage    = true
-  $server_python_pip       = true
-  $server_python_version   = 'system'
   $server_service_enable   = true
   $server_service_ensure   = 'running'
   $server_service_manage   = true
   $server_service_name     = 'pikka-bird-server'
-  $server_user_manage      = true
   $server_user_name        = 'pikka-bird'
   $server_workers          = 16
 

@@ -30,7 +30,6 @@ class pikka_bird::collector (
   $service_name   = $pikka_bird::params::collector_service_name,
   $user_manage    = $pikka_bird::params::collector_user_manage,
   $user_name      = $pikka_bird::params::collector_user_name,
-  $user_name      = $pikka_bird::params::collector_user_name,
 ) inherits pikka_bird::params {
 
   $ensure_d = $ensure ? {
@@ -38,20 +37,18 @@ class pikka_bird::collector (
     default   => $ensure,
   }
 
-  include '::pikka_bird::common::install'
-  include '::pikka_bird::common::install_pip'
-  include '::pikka_bird::common::install_python'
   include '::pikka_bird::collector::config'
   include '::pikka_bird::collector::install'
+  include '::pikka_bird::collector::install_pip'
+  include '::pikka_bird::collector::install_python'
   include '::pikka_bird::collector::service'
 
   anchor { 'pikka_bird::collector::start': }
   anchor { 'pikka_bird::collector::end': }
 
   Anchor['pikka_bird::collector::start'] ->
-  Class['pikka_bird::common::install_python'] ->
-  Class['pikka_bird::common::install_pip'] ->
-  Class['pikka_bird::common::install'] ->
+  Class['pikka_bird::collector::install_python'] ->
+  Class['pikka_bird::collector::install_pip'] ->
   Class['pikka_bird::collector::install'] ->
   Class['pikka_bird::collector::config'] ->
   Class['pikka_bird::collector::service'] ->

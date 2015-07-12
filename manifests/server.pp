@@ -18,20 +18,11 @@ class pikka_bird::server (
   $path_manage      = $pikka_bird::params::server_path_manage,
   $path_mode        = $pikka_bird::params::server_path_mode,
   $path_pid         = $pikka_bird::params::server_path_pid,
-  $pip_ensure       = $pikka_bird::params::server_pip_ensure,
-  $pip_manage       = $pikka_bird::params::server_pip_manage,
-  $pip_name         = $pikka_bird::params::server_pip_name,
   $port             = $pikka_bird::params::server_port,
-  $python_dev       = $pikka_bird::params::server_python_dev,
-  $python_manage    = $pikka_bird::params::server_python_manage,
-  $python_pip       = $pikka_bird::params::server_python_pip,
-  $python_version   = $pikka_bird::params::server_python_version,
   $service_enable   = $pikka_bird::params::server_service_enable,
   $service_ensure   = $pikka_bird::params::server_service_ensure,
   $service_manage   = $pikka_bird::params::server_service_manage,
   $service_name     = $pikka_bird::params::server_service_name,
-  $user_manage      = $pikka_bird::params::server_user_manage,
-  $user_name        = $pikka_bird::params::server_user_name,
   $user_name        = $pikka_bird::params::server_user_name,
   $workers          = $pikka_bird::params::server_workers,
 ) inherits pikka_bird::params {
@@ -41,9 +32,6 @@ class pikka_bird::server (
     default   => $ensure,
   }
 
-  include '::pikka_bird::common::install'
-  include '::pikka_bird::common::install_pip'
-  include '::pikka_bird::common::install_python'
   include '::pikka_bird::server::config'
   include '::pikka_bird::server::install'
   include '::pikka_bird::server::install_db'
@@ -54,9 +42,6 @@ class pikka_bird::server (
   anchor { 'pikka_bird::server::end': }
 
   Anchor['pikka_bird::server::start'] ->
-  Class['pikka_bird::common::install_python'] ->
-  Class['pikka_bird::common::install_pip'] ->
-  Class['pikka_bird::common::install'] ->
   Class['pikka_bird::server::install_libs'] ->
   Class['pikka_bird::server::install'] ->
   Class['pikka_bird::server::config'] ->
