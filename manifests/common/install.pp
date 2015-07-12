@@ -1,4 +1,4 @@
-class pikka_bird::install inherits pikka_bird {
+class pikka_bird::common::install inherits pikka_bird {
 
   if $pikka_bird::user_manage {
     user { 'pikka-bird':

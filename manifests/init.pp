@@ -35,29 +35,6 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class pikka_bird (
-  $pip_ensure     = $pikka_bird::params::pip_ensure,
-  $pip_manage     = $pikka_bird::params::pip_manage,
-  $pip_name       = $pikka_bird::params::pip_name,
-  $python_dev     = $pikka_bird::params::python_dev,
-  $python_manage  = $pikka_bird::params::python_manage,
-  $python_pip     = $pikka_bird::params::python_pip,
-  $python_version = $pikka_bird::params::python_version,
-  $user_manage    = $pikka_bird::params::user_manage,
-  $user_name      = $pikka_bird::params::user_name,
-) inherits pikka_bird::params {
-
-  include '::pikka_bird::install'
-  include '::pikka_bird::install_pip'
-  include '::pikka_bird::install_python'
-
-  anchor { 'pikka_bird::start': }
-  anchor { 'pikka_bird::end': }
-
-  Anchor['pikka_bird::start'] ->
-  Class['pikka_bird::install_python'] ->
-  Class['pikka_bird::install_pip'] ->
-  Class['pikka_bird::install'] ->
-  Anchor['pikka_bird::end']
+class pikka_bird {
 
 }

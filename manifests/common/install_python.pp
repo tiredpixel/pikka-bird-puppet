@@ -1,4 +1,4 @@
-class pikka_bird::install_python inherits pikka_bird {
+class pikka_bird::common::install_python inherits pikka_bird {
 
   if $pikka_bird::python_manage {
     class { 'python':
