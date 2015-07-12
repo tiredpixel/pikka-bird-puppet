@@ -2,7 +2,7 @@ class pikka_bird::server::install inherits pikka_bird::server {
 
   if $pikka_bird::server::package_manage {
     ::python::pip { 'pikka-bird-server':
-      ensure  => $pikka_bird::server::package_ensure,
+      ensure  => $pikka_bird::server::package_ensure2,
       pkgname => $pikka_bird::server::package_name,
       notify  => Service['pikka-bird-server'],
     }

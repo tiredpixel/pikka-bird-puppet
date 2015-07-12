@@ -37,6 +37,26 @@ class pikka_bird::collector (
     default   => $ensure,
   }
 
+  $package_ensure2 = $ensure ? {
+    'absent' => 'absent',
+    default  => $package_ensure,
+  }
+
+  $pip_ensure2 = $ensure ? {
+    'absent' => 'absent',
+    default  => $pip_ensure,
+  }
+
+  $python_version2 = $ensure ? {
+    'absent' => 'absent',
+    default  => $python_version,
+  }
+
+  $service_ensure2 = $ensure ? {
+    'absent' => 'absent',
+    default  => $service_ensure,
+  }
+
   include '::pikka_bird::collector::config'
   include '::pikka_bird::collector::install'
   include '::pikka_bird::collector::install_pip'

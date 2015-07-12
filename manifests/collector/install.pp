@@ -10,7 +10,7 @@ class pikka_bird::collector::install inherits pikka_bird::collector {
 
   if $pikka_bird::collector::package_manage {
     ::python::pip { 'pikka-bird-collector':
-      ensure  => $pikka_bird::collector::package_ensure,
+      ensure  => $pikka_bird::collector::package_ensure2,
       pkgname => $pikka_bird::collector::package_name,
       notify  => Service['pikka-bird-collector'],
     }

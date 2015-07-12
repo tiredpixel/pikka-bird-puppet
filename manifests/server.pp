@@ -32,6 +32,21 @@ class pikka_bird::server (
     default   => $ensure,
   }
 
+  $libpq_dev_ensure2 = $ensure ? {
+    'absent' => 'absent',
+    default  => $libpq_dev_ensure,
+  }
+
+  $package_ensure2 = $ensure ? {
+    'absent' => 'absent',
+    default  => $package_ensure,
+  }
+
+  $service_ensure2 = $ensure ? {
+    'absent' => 'absent',
+    default  => $service_ensure,
+  }
+
   include '::pikka_bird::server::config'
   include '::pikka_bird::server::install'
   include '::pikka_bird::server::install_db'
