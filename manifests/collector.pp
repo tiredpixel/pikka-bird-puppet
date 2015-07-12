@@ -47,11 +47,6 @@ class pikka_bird::collector (
     default  => $pip_ensure,
   }
 
-  $python_version2 = $ensure ? {
-    'absent' => 'absent',
-    default  => $python_version,
-  }
-
   $service_ensure2 = $ensure ? {
     'absent' => 'absent',
     default  => $service_ensure,
