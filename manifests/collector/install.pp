@@ -1,5 +1,13 @@
 class pikka_bird::collector::install inherits pikka_bird::collector {
 
+  if $pikka_bird::collector::user_manage {
+    user { 'pikka-bird':
+      ensure => $ensure,
+      name   => $pikka_bird::collector::user_name,
+      system => true,
+    }
+  }
+
   if $pikka_bird::collector::package_manage {
     ::python::pip { 'pikka-bird-collector':
       ensure  => $pikka_bird::collector::package_ensure,
