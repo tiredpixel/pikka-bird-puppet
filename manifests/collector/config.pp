@@ -1,6 +1,6 @@
 class pikka_bird::collector::config inherits pikka_bird::collector {
 
-  if $pikka_bird::collector::path_manage {
+  if $ensure != 'absent' and $pikka_bird::collector::path_manage {
     file { 'pikka-bird-collector-config':
       ensure  => $ensure,
       mode    => $pikka_bird::collector::path_mode_file,

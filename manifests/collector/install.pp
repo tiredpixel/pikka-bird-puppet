@@ -16,7 +16,7 @@ class pikka_bird::collector::install inherits pikka_bird::collector {
     }
   }
 
-  if $pikka_bird::collector::path_manage {
+  if $ensure != 'absent' and $pikka_bird::collector::path_manage {
     file { 'pikka-bird-collector-etc':
       ensure  => $ensure_d,
       mode    => $pikka_bird::collector::path_mode_dir,

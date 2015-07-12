@@ -1,6 +1,6 @@
 class pikka_bird::server::config inherits pikka_bird::server {
 
-  if $pikka_bird::server::path_manage {
+  if $ensure != 'absent' and $pikka_bird::server::path_manage {
     file { 'pikka-bird-server-config':
       ensure  => $ensure,
       mode    => $pikka_bird::server::path_mode_file,
