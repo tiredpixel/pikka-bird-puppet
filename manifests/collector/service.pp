@@ -1,6 +1,6 @@
 class pikka_bird::collector::service inherits pikka_bird::collector {
 
-  if $ensure != 'absent' && $service_manage == true {
+  if $ensure != 'absent' and $service_manage == true {
     service { 'pikka-bird-collector':
       ensure     => $service_ensure2,
       enable     => $service_enable,
