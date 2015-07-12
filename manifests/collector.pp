@@ -42,11 +42,6 @@ class pikka_bird::collector (
     default  => $package_ensure,
   }
 
-  $pip_ensure2 = $ensure ? {
-    'absent' => 'absent',
-    default  => $pip_ensure,
-  }
-
   $service_ensure2 = $ensure ? {
     'absent' => 'stopped',
     default  => $service_ensure,
