@@ -48,7 +48,7 @@ class pikka_bird::collector (
   }
 
   $service_ensure2 = $ensure ? {
-    'absent' => 'absent',
+    'absent' => 'stopped',
     default  => $service_ensure,
   }
 
