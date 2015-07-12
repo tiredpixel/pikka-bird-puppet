@@ -1,12 +1,12 @@
 {
   "name": "tiredpixel-pikka_bird",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "tiredpixel",
   "summary": "Pikka Bird ops monitoring tool.",
   "license": "MIT",
-  "source": "https://github.com/tiredpixel/puppet-pikka-bird",
-  "project_page": "https://github.com/tiredpixel/puppet-pikka-bird",
-  "issues_url": "https://github.com/tiredpixel/puppet-pikka-bird/issues",
+  "source": "https://github.com/tiredpixel/pikka-bird-puppet",
+  "project_page": "https://github.com/tiredpixel/pikka-bird-puppet",
+  "issues_url": "https://github.com/tiredpixel/pikka-bird-puppet/issues",
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
     {"name":"stankevich-python","version_requirement":">= 1.0.0"}
